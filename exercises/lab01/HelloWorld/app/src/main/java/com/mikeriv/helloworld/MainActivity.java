@@ -18,15 +18,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // We want to do any initialization work here
         super.onCreate(savedInstanceState);
+        // Load the XML representation of our layout into the view
         setContentView(R.layout.activity_main);
+        // findViewById let's us find the xml views we declared in our program
+        // (this is a link between the xml world and java)
         mMainTextView = (TextView) findViewById(R.id.main_text_view);
         mSumTextView = (TextView) findViewById(R.id.sum_text_view);
 
     }
 
-    @Override   // This is a method thhat the superclass c
+    @Override   // This is a method that the superclass defines
     protected void onStart() {
-        // Always call super for android methods or you will have a really bad time
+        // Always call super for android methods or you will have a really bad time!
         super.onStart();
 
         if (mSumTextView != null) {
