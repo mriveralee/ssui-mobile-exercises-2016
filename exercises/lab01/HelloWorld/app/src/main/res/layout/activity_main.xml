@@ -13,7 +13,7 @@
         android:id="@+id/main_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/app_name" />
     <TextView
         android:id="@+id/sum_text_view"
         android:layout_width="wrap_content"
