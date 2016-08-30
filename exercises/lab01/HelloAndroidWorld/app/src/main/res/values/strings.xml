@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Hello Android World!</string>
+    <string name="summation_text">The sum is %d - Woo!</string>
+</resources>
