@@ -62,14 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
     private String getSummationText(int sum) {
         // Resources let's us access all of our apps resources (images, strings, dimensions)
-        final Resources res = getResources();
         // res.getString(id, args...) - we can parametrize strings in the strings.xml and fill them
         // in using a format argument (let's you take care of unknown values)
         // Note: We can also do quantity-specific strings
         // Singular: Bob has 1 dog
         // vs.
         // Plural: Bob has 2 dogs
-        String sumString = res.getString(R.string.summation_text, sum);
+        String sumString = getString(R.string.summation_text, sum);
         return sumString;
     }
 
