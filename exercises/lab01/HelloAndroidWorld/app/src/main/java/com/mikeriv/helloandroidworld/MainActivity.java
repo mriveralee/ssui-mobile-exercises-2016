@@ -42,12 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private String getSummationText(int[] numbers) {
-        int sum = sum(numbers);
-        String sumString = getSummationText(sum);
-        return sumString;
-    }
-
     private static int sum(int[] numbers) {
         if (numbers == null || numbers.length == 0) {
             // Error case
@@ -60,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         return sum;
     }
 
-    private String getSummationText(int sum) {
+    private String getSummationText(int[] numbers) {
+        int sum = MainActivity.sum(numbers);
         // Resources let's us access all of our apps resources (images, strings, dimensions)
         // res.getString(id, args...) - we can parametrize strings in the strings.xml and fill them
         // in using a format argument (let's you take care of unknown values)
