@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Puzzle Game</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_new_game">New Game</string>
+    <string name="title_score_board">Score: %d</string>
+    <string name="title_puzzle_solved">Puzzle Solved! +%d Points</string>
+    <string name="title_puzzle_start">Start!</string>
+
+</resources>
