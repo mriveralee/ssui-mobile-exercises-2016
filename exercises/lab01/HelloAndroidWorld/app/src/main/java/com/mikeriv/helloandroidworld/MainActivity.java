@@ -25,9 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // findViewById let's us find the xml views we declared in our program
         // (this is a link between the xml world and java)
-        mMainTextView = (TextView) findViewById(R.id.main_text_view);
-        mSumTextView = (TextView) findViewById(R.id.sum_text_view);
-
+        mMainTextView = (TextView) findViewById(R.id.text_main_title);
+        mSumTextView = (TextView) findViewById(R.id.text_sum);
     }
 
     @Override   // This is a method that the superclass defines
