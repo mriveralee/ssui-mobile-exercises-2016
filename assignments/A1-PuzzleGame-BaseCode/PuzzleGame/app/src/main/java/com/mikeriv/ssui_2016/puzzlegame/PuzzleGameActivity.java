@@ -34,7 +34,7 @@ public class PuzzleGameActivity extends AppCompatActivity {
     private static final int TILE_IMAGE_ID = R.drawable.kitty;
 
     /**
-     * Button Listener that starts a new game
+     * Button Listener that starts a new game - this must be attached to the new game button
      */
     private final View.OnClickListener mNewGameButtonOnClickListener = new View.OnClickListener() {
         @Override
@@ -45,7 +45,7 @@ public class PuzzleGameActivity extends AppCompatActivity {
 
     /**
      * Click Listener that Handles Tile Swapping when we click on a tile that is
-     * neighboring the empty tile
+     * neighboring the empty tile - this must be attached to every tileView in the grid
      */
     private final View.OnClickListener mGameTileOnClickListener = new View.OnClickListener() {
         @Override
@@ -126,6 +126,12 @@ public class PuzzleGameActivity extends AppCompatActivity {
         // createPuzzleTileViews(0, 0);
     }
 
+    /**
+     * Creates a set of tile views based on the tileWidth and height
+     * @param minTileViewWidth the minium width of the tile
+     * @param minTileViewHeight the minimum height of the tile
+     */
+
     private void createPuzzleTileViews(int minTileViewWidth, int minTileViewHeight) {
         int rowsCount = mPuzzleGameBoard.getRowsCount();
         int colsCount = mPuzzleGameBoard.getColumnsCount();
@@ -136,12 +142,12 @@ public class PuzzleGameActivity extends AppCompatActivity {
     }
 
     /**
-     * Shuffles the puzzle tiles using a modified Durstenfield shuffle to ensure the board is
-     * solvable
+     * Shuffles the puzzle tiles randomly such that tiles may only swap if they are swapping with
+     * an empty tile to maintain solvability
      */
     private void shufflePuzzleTiles() {
         // TODO randomly shuffle the tiles such that tiles may only move spots if it is randomly
-        // swapped with a neighboring tile
+        // swapped with a neighboring empty tile
 
     }
 
@@ -170,7 +176,7 @@ public class PuzzleGameActivity extends AppCompatActivity {
      * @return true if the tiles are in correct order and the game is won
      */
     private boolean hasWonGame() {
-        // TODO
+        // TODO check if the user has won the game
         return false;
 
     }
@@ -187,7 +193,8 @@ public class PuzzleGameActivity extends AppCompatActivity {
      * and showing a start message
      */
     private void startNewGame() {
-        // TODO - handle starting a new game by shuffling the tiles and showing a start message
+        // TODO - handle starting a new game by shuffling the tiles and showing a start message,
+        // and updating the game state
     }
 
 

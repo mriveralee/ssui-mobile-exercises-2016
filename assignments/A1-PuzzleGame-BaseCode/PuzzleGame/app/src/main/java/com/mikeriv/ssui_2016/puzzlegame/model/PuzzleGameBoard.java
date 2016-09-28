@@ -108,6 +108,19 @@ public class PuzzleGameBoard {
     }
 
     /**
+     * checks if the given row, col position is within the bounds of the game board
+     * @param row
+     * @param col
+     * @return true if the row, col is within the game board
+     */
+    public boolean isWithinBounds(int row, int col) {
+        if (row < 0 || row >= mRows || col < 0 || col >= mColumns) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Swaps the tile in the game board at (firstTileRow, firstTileCol) with the tile at
      * (secondTileRow, secondTileCol) if they are within the bounds of the game board
      * @param firstTileRow - row index of first tile
@@ -124,19 +137,6 @@ public class PuzzleGameBoard {
         throwOutOfBoundsExceptionIfNecessary(secondTileRow, secondTileCol);
 
        // TODO - swap two tiles at the given indices
-    }
-
-    /**
-     * checks if the given row, col position is within the bounds of the game board
-     * @param row
-     * @param col
-     * @return true if the row, col is within the game board
-     */
-    private boolean isWithinBounds(int row, int col) {
-        if (row < 0 || row >= mRows || col < 0 || col >= mColumns) {
-            return false;
-        }
-        return true;
     }
 
     /**
