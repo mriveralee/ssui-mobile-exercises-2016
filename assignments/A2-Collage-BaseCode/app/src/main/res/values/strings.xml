@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">A2-Collage-BaseCode</string>
-    <string name="title_activity_collage">CollageActivity</string>
+    <string name="app_name">A2 Collage BaseCode</string>
+    <string name="title_activity_collage">Collage</string>
 </resources>

@@ -1,5 +1,5 @@
 
-package com.mikeriv.ssui_2016.a2_collage_basecode;
+package com.mikeriv.ssui_2016.a2_collage_basecode.drawing;
 
 import android.graphics.Canvas;
 import android.graphics.PointF;
@@ -12,102 +12,103 @@ import android.graphics.PointF;
  * to support and layout child objects.  However, objects primarily providing
  * visual displays are likely to do this in a simple default fashion.)
  *
- * Each <code>Artist</code> maintains a notion of its position (relative to
- * its containing or parent <code>Artist</code>) as well as its size.  its
+ * Each <code>VisualElement</code> maintains a notion of its position (relative to
+ * its containing or parent <code>VisualElement</code>) as well as its size.  its
  * size may be determined <i>intrinsically</i> (that is inside the object based
- * on what it draws) or may be set from the outside.  Every <code>Artist</code>
+ * on what it draws) or may be set from the outside.  Every <code>VisualElement</code>
  * object is responsible for maintaining a possible list of <i>child</i> objects
- * which are contained inside it. Finally, each <code>Artist</code> object is
+ * which are contained inside it. Finally, each <code>VisualElement</code> object is
  * also responsible for drawing its own appearance, and for arranging for the
  * layout and drawing of a set of child objects that appear within it.
  *
  * @author Scott Hudson
+ * @author Michael Rivera (modified 10/16/2016)
  *
  */
-public interface Artist {
+public interface VisualElement {
 	/*--------------------------------------------------*/
 	/* Geometry */
 	/*--------------------------------------------------*/
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Set the position (of the top left corner) of the artist
+	 * Set the position (of the top left corner) of the VisualElement
 	 * with respect to its parent's top left corner.  Note that the position
-	 * of an artist is most typically established by its parent at layout time,
+	 * of an VisualElement is most typically established by its parent at layout time,
 	 * so other calls to this routine may expect to often have their results
 	 * replaced during layout.
 	 *
-	 * @param pos the new position of the artist
+	 * @param pos the new position of the VisualElement
 	 */
 	public void setPosition(PointF pos);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Set the position (of the top left corner) of the artist
+	 * Set the position (of the top left corner) of the VisualElement
 	 * with respect to its parent's top left corner.  Note that the position
-	 * of an artist is most typically established by its parent at layout time,
+	 * of an VisualElement is most typically established by its parent at layout time,
 	 * so other calls to this routine may expect to often have their results
 	 * replaced during layout.
 	 *
-	 * @param x the new x position of the artist
-	 * @param y the new y position of the artist
+	 * @param x the new x position of the VisualElement
+	 * @param y the new y position of the VisualElement
 	 */
 	public void setPosition(float x, float y);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Set the x (horizontal) position (of the top left corner) of the artist
+	 * Set the x (horizontal) position (of the top left corner) of the VisualElement
 	 * with respect to its parent's top left corner.  Note that the position
-	 * of an artist is most typically established by its parent at layout time,
+	 * of an VisualElement is most typically established by its parent at layout time,
 	 * so other calls to this routine may expect to often have their results
 	 * replaced during layout.
 	 *
-	 * @param x the new x position of the artist
+	 * @param x the new x position of the VisualElement
 	 */
 	public void setX(float x);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Set the y (vertical) position (of the top left corner) of the artist
+	 * Set the y (vertical) position (of the top left corner) of the VisualElement
 	 * with respect to its parent's top left corner.  Note that the position
-	 * of an artist is most typically established by its parent at layout time,
+	 * of an VisualElement is most typically established by its parent at layout time,
 	 * so other calls to this routine may expect to often have their results
 	 * replaced during layout.
 	 *
-	 * @param y the new y position of the artist
+	 * @param y the new y position of the VisualElement
 	 */
 	public void setY(float y);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the current x,y position of the artist as a point
+	 * Return the current x,y position of the VisualElement as a point
 	 *
-	 * @return the position of the artist
+	 * @return the position of the VisualElement
 	 */
 	public PointF getPosition();
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the current x (horizontal) position of the artist
+	 * Return the current x (horizontal) position of the VisualElement
 	 *
-	 * @return the x position of the artist
+	 * @return the x position of the VisualElement
 	 */
 	public float getX();
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the current y (vertical) position of the artist
+	 * Return the current y (vertical) position of the VisualElement
 	 *
-	 * @return the y position of the artist
+	 * @return the y position of the VisualElement
 	 */
 	public float getY();
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Indicate whether the size of this artist is <i>intrinsic</i>.  An artist
+	 * Indicate whether the size of this VisualElement is <i>intrinsic</i>.  An VisualElement
 	 * has intrinsic size if it determines its own size.  For example, an
-	 * artist that draws an bitmap image might have an intrinsic size which is
-	 * determined by the size of the bitmap.  Artists which have intrinsic size
+	 * VisualElement that draws an bitmap image might have an intrinsic size which is
+	 * determined by the size of the bitmap.  VisualElements which have intrinsic size
 	 * will ignore attempts to set their size with the <code>setSize()</code>,
 	 * <code>setW()</code>, or <code>setH()</code> methods.
 	 *
@@ -131,8 +132,8 @@ public interface Artist {
 	 * Set the size of this object.  Note: if this object has intrinsic size
 	 * (which will be indicated by the <code>sizeIsIntrinsic()</code> method
 	 * returning true), this call is silently ignored.
-	 * @param w the new width of the artist
-	 * @param h the new height of the artist
+	 * @param w the new width of the VisualElement
+	 * @param h the new height of the VisualElement
 	 */
 	public void setSize(float w, float h);
 
@@ -141,7 +142,7 @@ public interface Artist {
 	 * Set the width of this object.  Note: if this object has intrinsic size
 	 * (which will be indicated by the <code>sizeIsIntrinsic()</code> method
 	 * returning true), this call is silently ignored.
-	 * @param w the new width of the artist
+	 * @param w the new width of the VisualElement
 	 */
 	public void setW(float w);
 
@@ -150,32 +151,31 @@ public interface Artist {
 	 * Set the height of this object.  Note: if this object has intrinsic size
 	 * (which will be indicated by the <code>sizeIsIntrinsic()</code> method
 	 * returning true), this call is silently ignored.
-	 * @param w the new width of the artist
-	 * @param h the new height of the artist
+	 * @param h the new height of the VisualElement
 	 */
 	public void setH(float h);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the size of this artist as a point.  The x value of the point
+	 * Return the size of this VisualElement as a point.  The x value of the point
 	 * will provide the width of the object and the y value will provide the
 	 * height.
-	 * @return the size of the artist as a point (x gives width, y gives height)
+	 * @return the size of the VisualElement as a point (x gives width, y gives height)
 	 */
 	public PointF getSize();
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the width of this artist.
-	 * @return the width of the artist
+	 * Return the width of this VisualElement.
+	 * @return the width of the VisualElement
 	 */
 	public float getW();
 
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the height of this artist.
-	 * @return the height of the artist
+	 * Return the height of this VisualElement.
+	 * @return the height of the VisualElement
 	 */
 	public float getH();
 
@@ -185,79 +185,79 @@ public interface Artist {
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the parent of this artist.  A null parent indicates that this
-	 * Artist is not currently installed in any parent object.
-	 * @return the parent of this artist.
+	 * Return the parent of this VisualElement.  A null parent indicates that this
+	 * VisualElement is not currently installed in any parent object.
+	 * @return the parent of this VisualElement.
 	 */
-	public Artist getParent();
+	public VisualElement getParent();
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Set the parent of this artist.  Note: this method does not add or remove
+	 * Set the parent of this VisualElement.  Note: this method does not add or remove
 	 * this object from the old or new parent's child list, it simply sets the
-	 * recorded parent object for this artist.  In most cases this action alone
+	 * recorded parent object for this VisualElement.  In most cases this action alone
 	 * is not sufficient and should be accompanied by appropriate modifications
 	 * to the child list of the parent object(s) involved.
-	 * @param newParent the new parent of this artist.
+	 * @param newParent the new parent of this VisualElement.
 	 */
-	public void setParent(Artist newParent);
+	public void setParent(VisualElement newParent);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the number of children this artist currently has
-	 * @return the number of children of this artist
+	 * Return the number of children this VisualElement currently has
+	 * @return the number of children of this VisualElement
 	 */
 	public int getNumChildren();
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Return the child object of this artist at the given index (or null if
-	 * the index is outside the valid child indexes for the artist, i.e., is
+	 * Return the child object of this VisualElement at the given index (or null if
+	 * the index is outside the valid child indexes for the VisualElement, i.e., is
 	 * < 0 or >= <code>getNumChildren()</code>).
 	 * @return the child at the given index (or null if out of bounds)
 	 */
-	public Artist getChildAt(int index);
+	public VisualElement getChildAt(int index);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Find the given child this artist's child list and return its index. If
-	 * the given child is not a child of this artist, this method returns -1.
+	 * Find the given child this VisualElement's child list and return its index. If
+	 * the given child is not a child of this VisualElement, this method returns -1.
 	 * @return the index of the given child (or -1 of this is not a child)
 	 */
-	public int findChild(Artist child);
+	public int findChild(VisualElement child);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Add the given child to the end of this artist's child list.  Attempts to
+	 * Add the given child to the end of this VisualElement's child list.  Attempts to
 	 * add null children are ignored.  If the given child is currently the child
 	 * of another object it is removed from that parent's child list.  If the
 	 * given child is currently the child of this object it is removed from the
 	 * its current position in the child list and placed at the end.
 	 * @param child the child to be added to the child list.
 	 */
-	public void addChild(Artist child);
+	public void addChild(VisualElement child);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Remove the child at the given index in the artist's child list.  Any
+	 * Remove the child at the given index in the VisualElement's child list.  Any
 	 * children later in the child list are moved earlier (so the child list
 	 * never contains "empty slots"). Attempts to remove non-existent children
 	 * are ignored.  After this method, the removed child should report a null
 	 * parent.
-	 * @param indx the index of the child to be removed.
+	 * @param index the index of the child to be removed.
 	 */
 	public void removeChildAt(int index);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Remove the given child from the artist's child list.  Any
+	 * Remove the given child from the VisualElement's child list.  Any
 	 * children later in the child list are moved earlier (so the child list
 	 * never contains "empty slots"). Attempts to remove children
 	 * not in the child list are ignored.  After this method, the removed
 	 * child (if any) should report a null parent.
 	 * @param child the child to be removed.
 	 */
-	public void removeChild(Artist child);
+	public void removeChild(VisualElement child);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
@@ -267,7 +267,7 @@ public interface Artist {
 	 * a child not currently in the child list are ignored.
 	 * @param child the child to be moved.
 	 */
-	public void moveChildFirst(Artist child);
+	public void moveChildFirst(VisualElement child);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
@@ -277,7 +277,7 @@ public interface Artist {
 	 * move a child not currently in the child list are ignored.
 	 * @param child the child to be moved.
 	 */
-	public void moveChildLast(Artist child);
+	public void moveChildLast(VisualElement child);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
@@ -288,7 +288,7 @@ public interface Artist {
 	 * Attempts to move a child not currently in the child list are ignored.
 	 * @param child the child to be moved.
 	 */
-	public void moveChildEarlier(Artist child);
+	public void moveChildEarlier(VisualElement child);
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
@@ -299,7 +299,7 @@ public interface Artist {
 	 * Attempts to move a child not currently in the child list are ignored.
 	 * @param child the child to be moved.
 	 */
-	public void moveChildLater(Artist child);
+	public void moveChildLater(VisualElement child);
 
 	/*--------------------------------------------------*/
 	/* Layout and Drawing */
@@ -307,8 +307,8 @@ public interface Artist {
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Perform a top-down layout traversal of the artist tree rooted at this
-	 * artist. This method should set the position each child object to create
+	 * Perform a top-down layout traversal of the VisualElement tree rooted at this
+	 * VisualElement. This method should set the position each child object to create
 	 * the layout strategy it enforces.
 	 */
 	public void doLayout();
@@ -316,14 +316,14 @@ public interface Artist {
 
 	/* . . . . . . . . . . . . . . . . . . . . . . . . . */
 	/**
-	 * Draw this artist and all child artists on the given <code>Canvas</code>
+	 * Draw this VisualElement and all child VisualElements on the given <code>Canvas</code>
 	 * object. All drawing must be clipped to the bounds of this object as well
 	 * as the bounds of all ancestor objects, and in general, must respect any
 	 * clipping region already established in the <code>Canvas</code> object it
 	 * draws on. The local coordinate system for the object will have been
 	 * established within the Canvas prior to this call.  That is, the Canvas
 	 * transformation will be set so that 0,0 is already where the top-left
-	 * corner of this Artist will be drawn.
+	 * corner of this VisualElement will be drawn.
 	 * @param onCanvas the <code>Canvas</code> object that drawing is done on.
 	 */
 	public void draw(Canvas onCanvas);
