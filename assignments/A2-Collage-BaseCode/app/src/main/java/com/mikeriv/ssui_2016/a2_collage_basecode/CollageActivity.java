@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.mikeriv.ssui_2016.a2_collage_basecode.drawing.VisualElement;
@@ -35,7 +36,6 @@ public class CollageActivity extends AppCompatActivity {
         if (mCollageFrame != null) {
             mCollageView = new CollageView(this);
             mCollageFrame.addView(mCollageView);
-
             // TODO create the root visual element of your collage view
             // using your created BaseVisualElement class and set it
             // mCollageView.setChildVisualElement(rootVisualElement);
@@ -88,6 +88,7 @@ public class CollageActivity extends AppCompatActivity {
         if (mCollageView == null) {
             return;
         }
+        mCollageView.requestLayout();
         mCollageView.invalidate();
     }
 
