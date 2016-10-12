@@ -20,31 +20,59 @@ public class ListenerTestActivity extends AppCompatActivity {
     private int mPettingCount = 0;
     private Toast mLongPressToast;
 
-    // TODO implement onclick listener
-    private final View.OnClickListener mPetClickListener =  null;
+    private final View.OnClickListener mPetClickListener =  new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mPettingCount += 1;
+            refreshPetsCountText();
+        }
+    };
 
-    // TODO implement long click listener
-    private final View.OnLongClickListener mLongPetClickListener = null;
+    private final View.OnLongClickListener mLongPetClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            if (v != mPupperImageView) {
+                return false;
+            }
+            showLongPressToast();
+            return true;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listener_test);
 
-        mPetsCountTextView = (TextView) findViewById(R.id.text_pets);
         mPupperImageView = (ImageView) findViewById(R.id.img_pupper);
-        // TODO set up images
+        if (mPupperImageView != null) {
+            mPupperImageView.setOnClickListener(mPetClickListener);
+            mPupperImageView.setOnLongClickListener(mLongPetClickListener);
+        }
 
+        mPetsCountTextView = (TextView) findViewById(R.id.text_pets);
         refreshPetsCountText();
     }
 
 
     private void refreshPetsCountText() {
-        // TODO
+        if (mPetsCountTextView == null) {
+            return;
+        }
+        mPetsCountTextView.setText(getString(R.string.label_petting_count, mPettingCount));
     }
 
     private void showLongPressToast() {
-        // TODO
+        if (mLongPressToast == null) {
+            mLongPressToast = Toast.makeText(
+                    this,
+                    getString(R.string.label_long_press),
+                    Toast.LENGTH_SHORT);
+        }
+        // Cancel any previously showing events
+        // mLongPressToast.cancel();
+        // Show the new event
+        mLongPressToast.show();
     }
 
 }
