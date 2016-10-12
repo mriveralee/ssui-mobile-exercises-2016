@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pet the Pupper</string>
+    <string name="label_pet_me">Pet me :D!</string>
+    <string name="label_long_press"> Hey that tickles!</string>
+    <string name="label_petting_count">Petted %d times!</string>
+
+</resources>
