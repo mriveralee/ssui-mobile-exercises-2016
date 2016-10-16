@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ParcelableActivityState</string>
+    <string name="enter_details_below">Hi! Please enter the following information</string>
+    <string name="hint_name">Kerry Washington</string>
+    <string name="hint_age">31</string>
+    <string name="hint_favorite_food">Steak Burritos</string>
+</resources>
