@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<ssuigamefsmspec>
+	<character name="test1" initbm="icon_black" initx="20" inity="20" initw="50" inith="50">
+		<fsm>
+			<state name="start">				
+				<transition targetState ="start">
+					<eventMatch type="MESSAGE_ARRIVED" message="$INIT$" />
+					<action type="CHANGE_IMAGE" bitmap="heart" />
+				</transition>
+				<transition targetState="start">
+					<eventMatch type="BUTTON_PRESSED" buttonName="button 0"/>
+					<action type="CHANGE_IMAGE" bitmap="icon_black" />
+				</transition>
+				<transition targetState="start">
+					<eventMatch type="TOUCH_PRESS"/>
+					<action type="CHANGE_IMAGE" bitmap="icon" />
+				</transition>
+				<transition targetState="start">
+					<eventMatch type="TOUCH_RELEASE"/>
+					<action type="CHANGE_IMAGE" bitmap="icon_red" />
+				</transition>
+				<transition targetState="start">
+					<eventMatch type="TOUCH_MOVE"/>
+					<action type="CHANGE_IMAGE" bitmap="crosshair" />
+				</transition>
+				<transition targetState="start">
+					<eventMatch type="BUTTON_PRESSED" buttonName="button 1"/>
+					<action type="RUN_ANIM" movingCharacterName="test1"
+							targetCharacterName="drag1" 
+							endMessage="ChangeToHeart" 
+							passOverMessage="passover"
+							duration="5000"/>
+				</transition>
+				<transition targetState="start">
+					<eventMatch type="ANIM_START"/>
+					<action type="CHANGE_IMAGE" bitmap="icon_red"/>
+				</transition>
+				<transition targetState="start">
+					<eventMatch type="ANIM_MOVE"/>
+					<action type="FOLLOW_EVENT_POSITION"/>
+				</transition>
+				<transition targetState="start">
+					<eventMatch type="ANIM_END"/>
+					<action type="FOLLOW_EVENT_POSITION"/>
+					<action type="CHANGE_IMAGE" bitmap="heart"/>
+				</transition>
+			</state>
+		</fsm>
+	</character>
+	
+	<character name="drag1" initbm="icon" initx="80" inity="20" initw="50" inith="50">
+		<fsm>
+			<state name="start">
+				<transition targetState="start">
+						<eventMatch type="TOUCH_PRESS"/>
+						<action type="GET_DRAG_FOCUS" />
+						<action type="CHANGE_IMAGE" bitmap="icon_red" />
+				</transition>
+				<transition targetState="start">
+						<eventMatch type="DRAG_MOVE"/>
+						<action type="FOLLOW_EVENT_POSITION" />
+				</transition>
+				<transition targetState="start">
+						<eventMatch type="DRAG_END"/>
+						<action type="DROP_DRAG_FOCUS" />
+						<action type="CHANGE_IMAGE" bitmap="icon" />
+				</transition>
+				<transition targetState="start">
+						<eventMatch type="MESSAGE_ARRIVED" message="ChangeToHeart"/>
+						<action type="CHANGE_IMAGE" bitmap="heart" />
+				</transition>
+			</state>
+		</fsm>
+	</character>
+	
+	<character name="pass1" initbm="icon" initx ="200" inity="20" initw="50" inith="50">
+		<fsm>
+			<state name="start">
+				<transition targetState="start">
+					<eventMatch type="MESSAGE_ARRIVED" message="passover"/>
+					<action type="CHANGE_IMAGE" bitmap="heart" />
+				</transition>
+			</state>
+		</fsm>
+	</character>
+	
+	<character name="bounce" initbm="crosshair" initx="10" inity="150" initw="50" inith="50">
+		<fsm>
+			<state name="state0">
+				<transition targetState="state1">
+					<eventMatch type="BUTTON_PRESSED" buttonName="Shift"/>
+					<action type="MOVE_TO" targetAbsoluteX="50" targetAbsoluteY="100"/>
+				</transition>
+			</state>
+			<state name="state1">
+				<transition targetState="state2">
+					<eventMatch type="BUTTON_PRESSED" buttonName="Shift"/>
+					<action type="MOVE_INC" targetOffsetX="20" targetOffsetY="30"/>
+				</transition>
+			</state>
+			<state name="state2">
+				<transition targetState="state0">
+					<eventMatch type="BUTTON_PRESSED" buttonName="Shift"/>
+					<action type="MOVE_TO" targetAbsoluteX="10" targetAbsoluteY="150"/>
+				</transition>"
+			</state>
+		</fsm>
+	</character>
+
+
+	<button name="button 0" />
+	<button name="button 1" />
+	<button name="Shift" />
+</ssuigamefsmspec>
