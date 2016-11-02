@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">NetworkActivityTest</string>
+    <string name="url_rand_cat">https://placekitten.com/%1$d/%2$d</string>
+    <string name="text_network_test_desc">
+        This is a networking test application. The button below will launch a new activity while firing off a network request for an image.
+    </string>
+    <string name="text_start_network_request">Test Network</string>
+    <string name="title_activity_network_test">Network Request</string>
+    <string name="text_no_connection">No Network Connection Available</string>
+    <string name="text_success">Success</string>
+    <string name="text_error">Error</string>
+    <string name="text_downloading">Downloading</string>
+
+</resources>
