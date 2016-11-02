@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             openNetworkTestActivity();
+
         }
     };
 
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openNetworkTestActivity() {
-        // TODO use an intent to start the NetworkTestActicity
+        Intent intent = new Intent(this, NetworkTestActivity.class);
+        startActivity(intent);
     }
 
 }

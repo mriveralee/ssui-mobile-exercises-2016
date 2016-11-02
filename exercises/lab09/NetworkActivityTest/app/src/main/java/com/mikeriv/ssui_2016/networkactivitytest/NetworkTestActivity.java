@@ -40,6 +40,7 @@ public class NetworkTestActivity extends AppCompatActivity {
                 return;
             }
             // TODO trigger a network request when clicking on the image
+            triggerNetworkRequest();
         }
     };
 
@@ -68,8 +69,8 @@ public class NetworkTestActivity extends AppCompatActivity {
         if (mStatusTextView != null) {
             mStatusTextView.setText(getString(R.string.text_downloading));
         }
-
         // TODO Trigger the first request!
+        triggerNetworkRequest();
     }
 
     @Override
@@ -99,6 +100,25 @@ public class NetworkTestActivity extends AppCompatActivity {
         // TODO get the connectivity manage and then network info to check if network isConnected
         // TODO if it is connected, create a new imageDownload task and execute it with the catURL
         // TODO otherwise set the status test to no_connection
+
+        // This manager tells us the state of our network
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Update status text to say downloading
+            mStatusTextView.setText(getString(R.string.text_downloading));
+
+            // Now create an AsyncTask to fire the request
+            mImageDownloadTask = new ImageDownloadTask();
+            // And.. fire the request!
+            mImageDownloadTask.execute(catUrl);
+        } else {
+            // Update status text to say no connection
+            mStatusTextView.setText(getString(R.string.text_no_connection));
+        }
 
     }
 
@@ -139,8 +159,8 @@ public class NetworkTestActivity extends AppCompatActivity {
                 return null;
             }
 
-            // TODO use downloadImage with a url to get a bitmap result
-            Bitmap result = null;
+            // TODO use download Image with a url to get a bitmap result
+            Bitmap result = downloadImage(urls[0]);
             return result;
         }
 
@@ -154,6 +174,20 @@ public class NetworkTestActivity extends AppCompatActivity {
             // TODO include updating the status text to either ERROR or SUCCESS using
             //  getString(R.string.text_error) && getString(R.string.text_success);
 
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mCatImageView != null) {
+                        mCatImageView.setImageBitmap(img);
+                    }
+                    if (mStatusTextView != null) {
+                        String statusText = (mFailedWithException)
+                                ? getString(R.string.text_error)
+                                : getString(R.string.text_success);
+                        mStatusTextView.setText(statusText);
+                    }
+                }
+            });
         }
 
         // Downloads an image based on a provided URL
