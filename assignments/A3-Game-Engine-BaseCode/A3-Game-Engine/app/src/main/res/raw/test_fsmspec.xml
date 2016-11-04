@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ssuigamefsmspec>
+    <character name="crossHair" initbm="crosshair" initx="10" inity="150" initw="50" inith="50">
+        <fsm>
+            <state name="state0">
+                <transition targetState="state1">
+                    <eventMatch type="BUTTON_PRESSED" buttonName="Shift"/>
+                    <action type="MOVE_TO" targetAbsoluteX="50" targetAbsoluteY="100"/>
+                </transition>
+            </state>
+            <state name="state1">
+                <transition targetState="state2">
+                    <eventMatch type="BUTTON_PRESSED" buttonName="Shift"/>
+                    <action type="MOVE_INC" targetOffsetX="20" targetOffsetY="30"/>
+                </transition>
+            </state>
+            <state name="state2">
+                <transition targetState="state0">
+                    <eventMatch type="BUTTON_PRESSED" buttonName="Shift"/>
+                    <action type="MOVE_TO" targetAbsoluteX="10" targetAbsoluteY="150"/>
+                </transition>"
+            </state>
+        </fsm>
+    </character>
+    <button name="button 0" />
+    <button name="button 1" />
+    <button name="Shift" />
+</ssuigamefsmspec>
